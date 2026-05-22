@@ -1,48 +1,115 @@
-# Speech Information Processing Course Materials
+# 语音信息处理课程作业
 
-This directory is organized by course scope first, then by lab.
+本仓库用于保存语音信息处理课程的实验作业。目前已上传 Lab1，后续 Lab2 及后续实验会继续按 `02_labs/` 目录结构补充。
 
-## Directory Map
+## 当前内容
 
-- `00_course_overview/` - course opening slides, grading policy, and overall course/project notes.
-- `01_lectures/` - theory lecture slides grouped by topic.
-  - `01_intro/` - signal processing and introductory material.
-  - `02_machine_learning/` - probability, GMM/EM, and HMM lectures.
-  - `03_deep_learning/` - language modeling, RNN, conditioned generation, and attention lectures.
-  - `04_asr/` - ASR lecture slides.
-  - `05_tts_and_speaker/` - TTS and speaker-recognition experiment lecture decks.
-- `02_labs/` - working lab materials, notebooks, transcripts, manuals, code, and lab datasets when bundled with a lab.
-  - `lab1_signal_features/` - speech signal processing, spectrograms, FBank/MFCC, and optional pretrained audio features.
-  - `lab2_poetry_lstm/` - PyTorch/LSTM poetry generation.
-  - `lab3_facodec_disentanglement/` - FACodec speech discretization, feature disentanglement, reconstruction, and voice conversion.
-  - `lab4_tts_melotts/` - MeloTTS speech synthesis transcripts, instructions, and the cloned `MeloTTS-Homework/` assignment repository.
-  - `lab5_speaker_recognition/` - ECAPA-TDNN speaker-recognition notebooks and AISHELL mini data bundled with the lab.
-- `03_archives/` - original compressed packages and duplicate extracted originals.
-  - `zip_originals/` - original `.zip` downloads.
-  - `extracted_originals/` - duplicate extracted copies kept for provenance.
-  - `macos_metadata/` - `__MACOSX` and `.DS_Store` metadata preserved from zip extraction.
-- `04_datasets_and_models/` - shared datasets or model resources not tied to a single working lab folder.
-  - `poetry_data/` - Chinese poetry JSON dataset extracted from `data.zip`.
-  - `facodec_model/` - currently empty; reserved for standalone FACodec model assets if they are separated later.
-  - `aishell_mini/` - currently empty; Lab 5's working AISHELL mini copy is under `02_labs/lab5_speaker_recognition/data/`.
-- `99_notes/` - reserved for future notes and summaries.
+```text
+.
+├── README.md
+├── .gitignore
+└── 02_labs/
+    └── lab1_signal_features/
+        ├── exp1_2026.ipynb
+        ├── exp1_2026.pdf
+        └── LJ001-0011.wav
+```
 
-## Common Entry Points
+## Lab1：语音信号特征提取
 
-- Lab 1 notebook: `02_labs/lab1_signal_features/exp1_2026.ipynb`
-- Lab 2 notebook: `02_labs/lab2_poetry_lstm/lab2.ipynb`
-- Lab 3 FACodec guide: see the experiment-guide PDF in `02_labs/lab3_facodec_disentanglement/`
-- Lab 4 MeloTTS homework repo: `02_labs/lab4_tts_melotts/MeloTTS-Homework/`
-- Lab 5 notebooks: `02_labs/lab5_speaker_recognition/01_setup.ipynb`, `02_labs/lab5_speaker_recognition/02_speaker_embedding.ipynb`, and `02_labs/lab5_speaker_recognition/03_asv_asi.ipynb`
+Lab1 主要围绕语音信号的基础特征提取展开，内容包括：
 
-## Lab Count
+- 使用 `librosa` 读取音频、绘制波形和频谱图。
+- 使用 `torchaudio` 计算 Mel 频谱图。
+- 手动实现传统语音特征提取流程：
+  - 预加重
+  - 分帧
+  - 加窗
+  - STFT 幅度谱和功率谱
+  - Mel 滤波器组
+  - FBank
+  - MFCC
+- 对比 Hamming 窗和 Hann 窗对幅度谱的影响。
+- 使用 Wav2Vec2 预训练模型提取深度音频特征，完成加分项。
 
-The confirmed lab set is:
+## 文件说明
 
-1. Lab 1 - speech signal processing and acoustic features.
-2. Lab 2 - LSTM poetry generation.
-3. Lab 3/4 numbering conflict - FACodec speech discretization and disentanglement. The meeting note calls it the third experiment, while the manual title says experiment four.
-4. Lab 4 - MeloTTS speech synthesis.
-5. Lab 5 - speaker recognition.
+- `02_labs/lab1_signal_features/exp1_2026.ipynb`  
+  Lab1 主实验 notebook，包含代码、图像输出和实验分析。
 
-There are 19 graded lab sub-items across these materials: 17 required items and 2 bonus items. The course overview also mentions a separate team Project track.
+- `02_labs/lab1_signal_features/exp1_2026.pdf`  
+  Lab1 实验指导文件。
+
+- `02_labs/lab1_signal_features/LJ001-0011.wav`  
+  实验使用的示例音频文件。
+
+## 运行环境
+
+推荐使用 Conda 环境。实验中使用的主要 Python 包包括：
+
+```text
+numpy
+pandas
+matplotlib
+librosa
+torch
+torchaudio
+scipy
+```
+
+本地实验环境为：
+
+```text
+conda environment: speech
+python: 3.x
+torch: 2.4.1+cpu
+torchaudio: 2.4.1+cpu
+```
+
+如果需要重新创建环境，可以参考：
+
+```bash
+conda create -n speech python=3.8
+conda activate speech
+pip install numpy pandas matplotlib librosa scipy torch torchaudio
+```
+
+## 运行方式
+
+进入 Lab1 目录：
+
+```bash
+cd 02_labs/lab1_signal_features
+```
+
+然后使用 Jupyter Notebook 或 VS Code 打开：
+
+```text
+exp1_2026.ipynb
+```
+
+建议按 notebook 顺序从上到下运行。Wav2Vec2 加分项第一次运行时会下载预训练模型权重，需要保持网络连接。
+
+## Lab1 输出说明
+
+Notebook 中包含以下主要输出：
+
+- 原始音频波形图。
+- `librosa` 频谱图和 Mel 频谱图。
+- `torchaudio` Mel 频谱图。
+- 预加重后波形图。
+- 分帧、加窗、STFT 后的幅度谱图。
+- Hamming 窗与 Hann 窗的幅度谱对比图。
+- FBank 特征图。
+- MFCC 特征图。
+- Wav2Vec2 深度音频特征图。
+
+## 后续计划
+
+后续 Lab2 会继续放在 `02_labs/` 下，例如：
+
+```text
+02_labs/lab2_*/
+```
+
+每个实验会尽量保留主 notebook、实验说明和必要的小型数据文件。大型模型权重、缓存文件、压缩包和临时输出不会直接提交到仓库。
