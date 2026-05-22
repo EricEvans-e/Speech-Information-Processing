@@ -1,0 +1,44 @@
+# Python and notebook cache
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local environments
+.venv/
+venv/
+env/
+.env
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Course materials not included in the homework submission repo yet
+00_course_overview/
+01_lectures/
+03_archives/
+04_datasets_and_models/
+99_notes/
+
+# Future labs are added intentionally when completed
+02_labs/*
+!02_labs/lab1_signal_features/
+02_labs/lab1_signal_features/*
+!02_labs/lab1_signal_features/exp1_2026.ipynb
+!02_labs/lab1_signal_features/exp1_2026.pdf
+!02_labs/lab1_signal_features/LJ001-0011.wav
+
+# Large generated artifacts and downloaded models
+*.zip
+*.tar
+*.tar.gz
+*.pth
+*.pt
+*.ckpt
+*.onnx
+checkpoints/
+models/
+runs/
+outputs/
