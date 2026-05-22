@@ -60,7 +60,7 @@ scipy
 本地实验环境为：
 
 ```text
-conda environment: speech
+conda environment: speech_env
 python: 3.x
 torch: 2.4.1+cpu
 torchaudio: 2.4.1+cpu
@@ -69,8 +69,8 @@ torchaudio: 2.4.1+cpu
 如果需要重新创建环境，可以参考：
 
 ```bash
-conda create -n speech python=3.8
-conda activate speech
+conda create -n speech_env python=3.8
+conda activate speech_env
 pip install numpy pandas matplotlib librosa scipy torch torchaudio
 ```
 
