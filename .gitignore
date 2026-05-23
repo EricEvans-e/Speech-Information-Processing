@@ -25,10 +25,13 @@ Thumbs.db
 # Future labs are added intentionally when completed
 02_labs/*
 !02_labs/lab1_signal_features/
+!02_labs/lab2_poetry_lstm/
 02_labs/lab1_signal_features/*
+02_labs/lab2_poetry_lstm/*
 !02_labs/lab1_signal_features/exp1_2026.ipynb
 !02_labs/lab1_signal_features/exp1_2026.pdf
 !02_labs/lab1_signal_features/LJ001-0011.wav
+!02_labs/lab2_poetry_lstm/lab2.ipynb
 
 # Large generated artifacts and downloaded models
 *.zip
